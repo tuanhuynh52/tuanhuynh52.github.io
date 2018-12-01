@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="css/login.css">
+        <!-- jQuery -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+    </head>
+    <body>
+        <form id="loginForm">
+            <h1 align="center">
+                <span class="header_login">Welcome to SkyCast Weather</span>
+            </h1>
+            <div class="imgcontainer">
+                <img src="images/avatar.png" alt="Avatar" class="avatar">
+            </div>
+            <div class="container" id="app" style="text-align: center;">
+                <label><b>Email</b></label>
+                <input id="email" type="text" placeholder="Email" required>
+
+                <label><b>Password</b></label>
+                <input id="password" type="password" placeholder="Password" name="psw" required>
+
+                <button type="button" id="signinbtn" >Login</button>
+                <button type="button" id="signupbtn">Register</button>
+            </div>
+
+            <div class="container" style="text-align: center;">
+            <a href="#" data-target="#pwdModal" data-toggle="modal">Forgot my password? </a> 
+            </div>
+        </form>
+
+        <!--forget password modal-->
+        <div id="pwdModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h1 class="text-center">Forgot Your Password?</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="text-center"><p>If you have forgotten your password you can reset it here.</p>
+                                    <div class="panel-body">
+                                        <fieldset>
+                                            <div class="form-group">
+                                            <input id="lookup_email" class="form-control input-lg" placeholder="E-mail Address" name="email" type="email">
+                                            </div>
+                                            <input id="retrievePasswordBtn" class="btn btn-lg btn-primary btn-block" value="Send My Password" type="submit">
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                <div class="modal-footer">
+                    <div class="col-md-12">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true" style="background-color: green; color: white;">Cancel</button>
+                    </div>    
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        <!-- ADD FIREBASE TO WEB APP-->
+        <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+        <script type="text/javascript" src="js/authfirebase.js" ></script>
+        
+    </body>
+</html>
