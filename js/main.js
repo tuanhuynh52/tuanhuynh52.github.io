@@ -61,6 +61,41 @@
         }
     });
 
+    //get Lat and Lng for darksky api and current location geocoding api
+    function getLatLng(callback, address) {
+
+        geocoder = new google.maps.Geocoder();
+
+        if (geocoder) {
+            geocoder.geocode({
+                'address': address
+            }, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    callback(results[0]);
+                } else {
+                    window.alert("Invalid Input, Please Try Again!");
+                }
+            });
+        }
+
+    };
+
+
+    //parsing DarkSky api
+    function showResult(result) {
+    //    document.getElementById('latitude').value = result.geometry.location.lat();
+    //    document.getElementById('longitude').value = result.geometry.location.lng();
+        latitude = result.geometry.location.lat();
+        longitude = result.geometry.location.lng();
+        // console.log("lat: "+ latitude);
+        // console.log("lng: " + longitude);
+        var url = "https://api.darksky.net/forecast/10aed908cfd19b3e50863a98a877217f/" + latitude + "," + longitude;
+        // console.log(url);
+        displayLocation(latitude, longitude);
+        //parsing JSON from url
+        weatherReport(url);
+    };
+
     //getting current location on start
     showCurrentLocation();
     function showCurrentLocation() {
@@ -75,7 +110,7 @@
     function showPosition(result) {
         latitude = result.coords.latitude;
         longitude = result.coords.longitude;
-        //console.log(latitude + " " + longitude);
+        // console.log(latitude + " " + longitude);
         displayLocation(latitude, longitude);
         var url = "https://api.darksky.net/forecast/10aed908cfd19b3e50863a98a877217f/" + latitude + "," + longitude;
         weatherReport(url);
@@ -291,20 +326,6 @@
                     }
                 }
         );
-    };
-
-    //parsing DarkSky api
-    function showResult(result) {
-    //    document.getElementById('latitude').value = result.geometry.location.lat();
-    //    document.getElementById('longitude').value = result.geometry.location.lng();
-        latitude = result.geometry.location.lat();
-        longitude = result.geometry.location.lng();
-
-        var url = "https://api.darksky.net/forecast/10aed908cfd19b3e50863a98a877217f/" + latitude + "," + longitude;
-        //console.log(url);
-        displayLocation(latitude, longitude);
-        //parsing JSON from url
-        weatherReport(url);
     };
 
     //parsing darksky api for weather report and added CORS feature detection
@@ -544,25 +565,6 @@
         }
 
         icons.play();
-    };
-
-    //get Lat and Lng for darksky api and current location geocoding api
-    function getLatLng(callback, address) {
-
-        geocoder = new google.maps.Geocoder();
-
-        if (geocoder) {
-            geocoder.geocode({
-                'address': address
-            }, function (results, status) {
-                if (status === google.maps.GeocoderStatus.OK) {
-                    callback(results[0]);
-                } else {
-                    window.alert("Invalid Input, Please Try Again!");
-                }
-            });
-        }
-
     };
 
     //get hourly weather report -- every 2 hours
