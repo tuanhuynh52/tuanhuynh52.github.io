@@ -52,6 +52,7 @@
         }
     });
     getWeatherButton.addEventListener("click", function () {
+
         if (address.value.length === 0) {
             alert("please input city!!!");
         } else {
@@ -70,6 +71,15 @@
         }
     };
     
+    //get lat lng from current location for url api
+    function showPosition(result) {
+        latitude = result.coords.latitude;
+        longitude = result.coords.longitude;
+        //console.log(latitude + " " + longitude);
+        displayLocation(latitude, longitude);
+        var url = "https://api.darksky.net/forecast/10aed908cfd19b3e50863a98a877217f/" + latitude + "," + longitude;
+        weatherReport(url);
+    };
 
     //get weather from current location
     var currentLocationBtn = document.getElementById('getcurrentlocationbtn');
@@ -248,16 +258,6 @@
         // re-render the list of location
         refreshWindow();
     });
-
-    //get lat lng from current location for url api
-    function showPosition(result) {
-        latitude = result.coords.latitude;
-        longitude = result.coords.longitude;
-        //console.log(latitude + " " + longitude);
-        displayLocation(latitude, longitude);
-        var url = "https://api.darksky.net/forecast/10aed908cfd19b3e50863a98a877217f/" + latitude + "," + longitude;
-        weatherReport(url);
-    };
 
     //get current address from lat lng
     function displayLocation(lat, lng) {

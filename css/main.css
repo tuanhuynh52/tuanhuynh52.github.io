@@ -167,14 +167,6 @@ div.scrollbar_detail label {
     padding-bottom: 10px;
 }
 
-#removeButton {
-    background-color: red;
-    border: none;
-    text-align: center;
-    display: inline-block;
-    color: white;
-}
-
 .temp_container #tempature {
     font-size: 2.5em;
 }
