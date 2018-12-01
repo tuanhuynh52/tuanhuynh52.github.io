@@ -1,0 +1,222 @@
+
+
+.search_container {
+    padding: 15px;
+}
+
+input[type=text] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.header_container {
+    background-image: url('../images/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header_container .account_container {
+    font-size: 15px;
+    padding-top: 10px;
+    padding-left: 50px;
+    padding-bottom: 20px;
+}
+
+.header_container .account_container label{
+    margin-top: 20px;
+}
+
+.account_container #signoutbtn {
+    margin-top: 5px;
+    background-color: #f44336;
+}
+
+.account_container #historybtn {
+    margin-left: 25%;
+    background-color: #4CAF50;
+}
+.account_container #myEmail {
+    font-size: 20px;
+}
+
+button {
+    width: auto;
+    align-content: center;
+    padding: 10px 18px;
+    color: white;
+}
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+}
+
+.search_container #getweatherbtn {
+    background-color: #f44336;
+}
+
+.search_container #getcurrentlocationbtn {
+    background-color: #4CAF50;
+    margin-left: 10px;
+}
+
+.row {
+    padding: 10px 0 10px 10px;
+}
+
+.row #current_weather_container {
+    text-align: center; 
+}
+
+#current_weather_container {
+    border: 2px solid background;
+    background-size: contain;
+    background-repeat: no-repeat; 
+    color: black;
+}
+
+#addweatherbtn {
+    background-color: #4CAF50;
+    margin-top: 20px; 
+    height: 40px;
+}
+
+.weather_info_container p {
+    font-size: 15px;
+}
+
+.place_time {
+  height: 90px; 
+  padding-top: 10px;
+}
+
+.place_time #city_name {
+    font-size: 1.5em;
+}
+
+div.scrollbar_detail {
+    background-color: #EEEEEE;
+    overflow: auto;
+    white-space: normal;
+}
+
+div.scrollbar_detail label {
+    display: inline-block;
+    text-align: left;
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+}
+
+#history_table {
+    border-top: 2px solid background;
+    text-align: center;
+}
+
+#history_table ul {
+    height: 350px;
+    list-style-type: square;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+#history_table button {
+    height: 30px;
+    width: 100px;
+    margin-left: 50px;
+    padding-bottom: 30px;
+    margin-bottom: 15px;
+    background-color: white;
+    padding: inherit;
+}
+
+#history_table p {
+    padding: 10px;
+    border-bottom: 1px solid background;
+}
+
+.hourly_report_chart {
+    padding: 15px;
+}
+
+.chart_container {
+    overflow: hidden;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.chart_container #header {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.chart_container #weekly_summary { 
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.temp_container {
+    display: table;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+#removeButton {
+    background-color: red;
+    border: none;
+    text-align: center;
+    display: inline-block;
+    color: white;
+}
+
+.temp_container #tempature {
+    font-size: 2.5em;
+}
+
+.temp_container span {
+    padding-right: 10px;
+}
+
+.temp_container .low_high_temp_container {
+    font-size: 15px;
+}
+
+.inner {
+    padding-top: 20px;
+    align-content: center;
+    text-align: center;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.inner table, th, td {
+    border: 1px solid black;
+}
+
+.inner th, td {
+    padding: .5em 1em;
+    text-align: center;
+}
+
+.inner tbody td {
+    padding: 10px 10px 10px 10px;
+    font-size: 16px;
+}
+
+.my_footer p {
+    padding-top: 10px;
+    font-size: 1.5em;
+}
+
+@media only screen and (max-width: 369px) {
+    .low_high_temp_container {
+        margin-left: -5px;
+    }
+}
