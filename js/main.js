@@ -64,7 +64,7 @@
     //get Lat and Lng for darksky api and current location geocoding api
     function getLatLng(callback, address) {
 
-        geocoder = new google.maps.Geocoder();
+        var geocoder = new google.maps.Geocoder();
 
         if (geocoder) {
             geocoder.geocode({
