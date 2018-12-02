@@ -39,13 +39,16 @@
     var humidity = document.getElementById('humidity');
     var uvIndex = document.getElementById('uvIndex');
 
-    //var autocomplete = new google.maps.places.Autocomplete(address);
+
+    this.refreshWindow();
+
     var currentUser;
     //user object with weather details
     //var user = {email: currentUser.email,
     //get weater from input 
     //trigger enter key to click get weather button
     var address = document.getElementById('address');
+
     $(address).keypress(function(e) {
         if (e.which == 13) {
             $(getWeatherButton).click();   
@@ -72,6 +75,9 @@
             }, function (results, status) {
                 if (status === google.maps.GeocoderStatus.OK) {
                     callback(results[0]);
+                } else if (status === google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+                    Thread.sleep(5000);
+                    return getLatLng(showResult, address.value);
                 } else {
                     window.alert("Invalid Input, Please Try Again!");
                 }
@@ -98,6 +104,13 @@
 
     //getting current location on start
     showCurrentLocation();
+
+    //get weather from current location
+    var currentLocationBtn = document.getElementById('getcurrentlocationbtn');
+    currentLocationBtn.addEventListener("click", function () {
+        showCurrentLocation();
+    });
+
     function showCurrentLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -116,17 +129,9 @@
         weatherReport(url);
     };
 
-    //get weather from current location
-    var currentLocationBtn = document.getElementById('getcurrentlocationbtn');
-    currentLocationBtn.addEventListener("click", function () {
-        showCurrentLocation();
-    });
-
     //get current user signed in
     var firebaseRef = firebase.database().ref();
     var current_email = document.getElementById('myEmail');
-
-    this.refreshWindow();
 
     function refreshWindow() {
         firebase.auth().onAuthStateChanged(function (user) {
@@ -185,6 +190,41 @@
 
         }
     };
+
+    //get current address from lat lng
+    function displayLocation(lat, lng) {
+        var geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(lat, lng);
+        var currentCity;
+
+        geocoder.geocode(
+                {'latLng': latlng},
+                function (results, status) {
+                    if (status === google.maps.GeocoderStatus.OK) {
+                        if (results[0]) {
+                            var add = results[0].formatted_address;
+    //                    console.log(add);
+                            var value = add.split(",");
+
+                            count = value.length;
+                            country = value[count - 1];
+                            state = value[count - 2];
+                            city = value[count - 3];
+                            currentCity = city + ", " + state;
+                            cityName = document.getElementById('city_name').innerHTML
+                                    = (city + ", " + state).toUpperCase();
+    //                    alert(currentCity.toUpperCase());
+    //                    document.getElementById('city_name').innerHTML = currentCity.toUpperCase();
+                        } else {
+                            alert("address not found");
+                        }
+                    } else {
+                        alert(status);
+                    }
+                }
+        );
+    };
+
 
     //remove location object from firebase for click event
     function removeLocation(keyId) {
@@ -293,40 +333,6 @@
         // re-render the list of location
         refreshWindow();
     });
-
-    //get current address from lat lng
-    function displayLocation(lat, lng) {
-        var geocoder = new google.maps.Geocoder();
-        var latlng = new google.maps.LatLng(lat, lng);
-        var currentCity;
-
-        geocoder.geocode(
-                {'latLng': latlng},
-                function (results, status) {
-                    if (status === google.maps.GeocoderStatus.OK) {
-                        if (results[0]) {
-                            var add = results[0].formatted_address;
-    //                    console.log(add);
-                            var value = add.split(",");
-
-                            count = value.length;
-                            country = value[count - 1];
-                            state = value[count - 2];
-                            city = value[count - 3];
-                            currentCity = city + ", " + state;
-                            cityName = document.getElementById('city_name').innerHTML
-                                    = (city + ", " + state).toUpperCase();
-    //                    alert(currentCity.toUpperCase());
-    //                    document.getElementById('city_name').innerHTML = currentCity.toUpperCase();
-                        } else {
-                            alert("address not found");
-                        }
-                    } else {
-                        alert(status);
-                    }
-                }
-        );
-    };
 
     //parsing darksky api for weather report and added CORS feature detection
     function weatherReport(url) {
