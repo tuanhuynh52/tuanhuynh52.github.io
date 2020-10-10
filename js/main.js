@@ -27,7 +27,7 @@
     var getWeatherButton = document.getElementById('getweatherbtn');
     var latitude;
     var longitude;
-    var apikey = "10aed908cfd19b3e50863a98a877217f";
+    var apikey = "9ad876c22f9b4a620b70653a24622eb7";
 
     var cityName;
     var tempature = document.getElementById('tempature');
