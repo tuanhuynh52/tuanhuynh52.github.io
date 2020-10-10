@@ -79,7 +79,7 @@
                     Thread.sleep(5000);
                     return getLatLng(showResult, address.value);
                 } else {
-                    window.alert("Invalid Input, Please Try Again!");
+                    window.alert(status);
                 }
             });
         }
@@ -95,7 +95,7 @@
         longitude = result.geometry.location.lng();
         // console.log("lat: "+ latitude);
         // console.log("lng: " + longitude);
-        var url = "https://api.darksky.net/forecast/10aed908cfd19b3e50863a98a877217f/" + latitude + "," + longitude;
+        var url = "https://api.darksky.net/forecast/" + apikey + "/" + latitude + "," + longitude;
         // console.log(url);
         displayLocation(latitude, longitude);
         //parsing JSON from url
@@ -125,7 +125,7 @@
         longitude = result.coords.longitude;
         // console.log(latitude + " " + longitude);
         displayLocation(latitude, longitude);
-        var url = "https://api.darksky.net/forecast/10aed908cfd19b3e50863a98a877217f/" + latitude + "," + longitude;
+        var url = "https://api.darksky.net/forecast/" + apikey + "/" + latitude + "," + longitude;
         weatherReport(url);
     };
 
